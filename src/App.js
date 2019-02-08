@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './filecoin-logo.svg';
 import data from './leaderboard.json'
+import gold from './gold.png'
+import silver from './silver.png'
+import bronze from './bronze.png'
 
 const Avatar = ({name, className = 'ml2 mr4 v-mid', size = 80}) => {
   return (
@@ -40,17 +43,20 @@ class App extends Component {
           </div>
           <ol className='ma0 lh-copy mw7 center db' style={{listStyleType: 'decimal'}}>
           {data.slice(0,1).map(({prover, repl_time}) => (
-            <li className='tl f4 pa3 bg-gold white br2'>
+            <li className='tl f4 pa3 bg-gold white br2 relative'>
+              <img src={gold} alt='winner' className='absolute' style={{ width: 45, top: -1, right: '7rem' }}/>
               <Entry name={prover} time={repl_time} />
             </li>
           ))}
           {data.slice(1,2).map(({prover, repl_time}) => (
-            <li className='tl f4 mt3 pa3 bg-silver white br2'>
+            <li className='tl f4 mt4 pa3 bg-silver white br2 relative'>
+              <img src={silver} alt='second' className='absolute' style={{ width: 45, top: -1, right: '7rem' }} />
               <Entry name={prover} time={repl_time} />
             </li>
           ))}
           {data.slice(2,3).map(({prover, repl_time}) => (
-            <li className='tl f4 mt3 pa3 br2 white' style={{background: '#cd7f32'}}>
+            <li className='tl f4 mt4 mb4 pa3 br2 white relative' style={{background: '#cd7f32'}}>
+              <img src={bronze} alt='third' className='absolute' style={{ width: 45, top: -1, right: '7rem' }} />
               <Entry name={prover} time={repl_time} />
             </li>
           ))}

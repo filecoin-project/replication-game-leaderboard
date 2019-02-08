@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './filecoin-logo.svg';
 import data from './leaderboard.json'
 
-const Avatar = ({name, className = 'mr3 v-mid', size = 80}) => {
+const Avatar = ({name, className = 'ml2 mr4 v-mid', size = 80}) => {
   return (
     <img src={`https://github.com/${name}.png?size=80`} className={className} style={{width: size/2, height: size/2}} alt={`${name} avatar`} />
   )
@@ -28,8 +28,11 @@ class App extends Component {
   render() {
     return (
       <div className="sans-serif white">
-        <header className="tc">
-          <h1 className='ma0 pv4 fw2 f1 montserrat'><img src={logo} alt='fil' width='40' className='mr3 v-bottom'/>  Replication challenge</h1>
+        <header className="mw7 center pl5">
+          <h1 className='ma0 pv4 fw2 f1 montserrat'>
+            <img src={logo} alt='fil' width='40' className='db dib-l mb3 mb0-l mr4 v-bottom'/>
+            <span>Replication challenge</span>
+          </h1>
         </header>
         <main>
           <div className='mw7 center tr pb2'>

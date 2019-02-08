@@ -1,24 +1,63 @@
 import React, { Component } from 'react';
 import logo from './filecoin-logo.svg';
+import data from './leaderboard.json'
+
+const Avatar = ({name, className = 'mr3 v-mid', size = 80}) => {
+  return (
+    <img src={`https://github.com/${name}.png?size=80`} className={className} style={{width: size/2, height: size/2}} alt={`${name} avatar`} />
+  )
+}
+
+const ReplTime = ({time}) => {
+  return (
+    <span className='dib f4 fr bg-snow black b pa2 br3 lh-solid w3 tc sans-serif truncate'>{time}</span>
+  )
+}
+
+const Entry = ({name, time}) => {
+  return (
+    <React.Fragment>
+      <Avatar name={name} />
+      <span className='fw6 montserrat truncate'>{name}</span>
+      <ReplTime time={time} />
+    </React.Fragment>
+  )
+}
 
 class App extends Component {
   render() {
     return (
-      <div className="">
-        <header className="">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+      <div className="sans-serif white">
+        <header className="tc">
+          <h1 className='ma0 pv4 fw2 f1 montserrat'><img src={logo} alt='fil' width='40' className='mr3 v-bottom'/>  Replication challenge</h1>
         </header>
+        <main>
+          <div className='mw7 center tr pb2'>
+            <span className='pr4 mr2'>Time</span>
+          </div>
+          <ol className='ma0 lh-copy mw7 center db' style={{listStyleType: 'decimal'}}>
+          {data.slice(0,1).map(({prover, repl_time}) => (
+            <li className='tl f4 pa3 bg-gold white br2'>
+              <Entry name={prover} time={repl_time} />
+            </li>
+          ))}
+          {data.slice(1,2).map(({prover, repl_time}) => (
+            <li className='tl f4 mt3 pa3 bg-silver white br2'>
+              <Entry name={prover} time={repl_time} />
+            </li>
+          ))}
+          {data.slice(2,3).map(({prover, repl_time}) => (
+            <li className='tl f4 mt3 pa3 br2 white' style={{background: '#cd7f32'}}>
+              <Entry name={prover} time={repl_time} />
+            </li>
+          ))}
+          {data.slice(3,9).map(({prover, repl_time}) => (
+            <li className='tl mt3 ph3 f4'>
+              <Entry name={prover} time={repl_time} />
+            </li>
+          ))}
+          </ol>
+        </main>
       </div>
     );
   }

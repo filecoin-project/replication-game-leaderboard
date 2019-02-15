@@ -46,6 +46,17 @@ const Medal = ({ type }) => {
   )
 }
 
+function formatParams ({ typ, challenge_count, vde, degree, expansion_degree, layers }) {
+  return [
+    `Type: ${typ}`,
+    `Challenges: ${challenge_count}`,
+    `VDE: ${vde}`,
+    `Degree: ${degree}`,
+    `Expansion degree: ${expansion_degree}`,
+    `Layers: ${layers}`
+  ].join(', ')
+}
+
 class App extends Component {
   state = {}
 
@@ -98,26 +109,41 @@ class App extends Component {
             <span className='f5 pr2 mr2'>Time / byte (ms)</span>
           </div>
           <ol className='ma0 lh-copy mw7 mb5 center db gray' style={{listStyleType: 'decimal'}}>
-          {data.slice(0,1).map(({ id, prover, perByteTime }) => (
-            <li key={id} className='tl f4 pa3 b--gold b--solid bw1 br3 relative shadow-1' style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}>
+          {data.slice(0,1).map(({ id, prover, perByteTime, params }) => (
+            <li
+              key={id}
+              className='tl f4 pa3 b--gold b--solid bw1 br3 relative shadow-1'
+              style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}
+              title={formatParams(params)}>
               <Medal type='gold' />
               <Entry name={prover} time={perByteTime} />
             </li>
           ))}
-          {data.slice(1,2).map(({ id, prover, perByteTime }) => (
-            <li key={id} className='tl f4 mt4 pa3 b--silver b--solid bw1 br3 relative shadow-1' style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}>
+          {data.slice(1,2).map(({ id, prover, perByteTime, params }) => (
+            <li
+              key={id}
+              className='tl f4 mt4 pa3 b--silver b--solid bw1 br3 relative shadow-1'
+              style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}
+              title={formatParams(params)}>
               <Medal type='silver' />
               <Entry name={prover} time={perByteTime} />
             </li>
           ))}
-          {data.slice(2,3).map(({ id, prover, perByteTime }) => (
-            <li key={id} className='tl f4 mt4 mb4 pa3 b--solid bw1 br3 relative shadow-1' style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}>
+          {data.slice(2,3).map(({ id, prover, perByteTime, params }) => (
+            <li
+              key={id}
+              className='tl f4 mt4 mb4 pa3 b--solid bw1 br3 relative shadow-1'
+              style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}
+              title={formatParams(params)}>
               <Medal type='bronze' />
               <Entry name={prover} time={perByteTime} />
             </li>
           ))}
-          {data.slice(3).map(({ id, prover, perByteTime }) => (
-            <li key={id} className='tl mt3 ph3 f4'>
+          {data.slice(3).map(({ id, prover, perByteTime, params }) => (
+            <li
+              key={id}
+              className='tl mt3 ph3 f4'
+              title={formatParams(params)}>
               <Entry name={prover} time={perByteTime} />
             </li>
           ))}

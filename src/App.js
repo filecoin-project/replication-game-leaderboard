@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import numeral from 'numeral'
+import md5 from 'md5'
 import logo from './filecoin-logo.svg'
 import gold from './gold.png'
 import silver from './silver.png'
@@ -19,7 +20,12 @@ const Header = () => (
 
 const Avatar = ({name, className = 'mr3 v-mid', size = 60}) => {
   return (
-    <img src={`https://github.com/${name}.png?size=${size}`} className={className} style={{width: size/2, height: size/2}} alt={`${name} avatar`} />
+    <img
+      src={`https://github.com/${name}.png?size=${size}`}
+      className={className}
+      style={{width: size/2, height: size/2}}
+      alt={`${name} avatar`}
+      onError={e => { e.target.src = `https://www.gravatar.com/avatar/${md5(name)}?d=retro&s=${size}` }} />
   )
 }
 

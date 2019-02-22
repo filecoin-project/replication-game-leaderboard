@@ -9,15 +9,15 @@ const API_URL = process.env.REACT_APP_API_URL || '/leaderboard.json'
 const REFRESH_INTERVAL = process.env.REACT_APP_REFRESH_INTERVAL || 10 * 1000
 
 const Header = () => (
-  <header className="mw7 center pl5">
-    <h1 className='ma0 pv4 fw2 f1 montserrat'>
-      <img src={logo} alt='fil' width='80' className='db dib-l mb3 mb0-l mr4 v-mid'/>
-      <span className='v-mid'>Replication challenge</span>
+  <header className="mw7 center">
+    <h1 className='ma0 pv4 fw2 f1 montserrat tc'>
+      <img src={logo} alt='fil' width='80' className='db dib-l center mb3 mb0-l ml0-l mr4-l v-mid'/>
+      <span className='v-mid'>Replication Game</span>
     </h1>
   </header>
 )
 
-const Avatar = ({name, className = 'ml2 mr4 v-mid', size = 60}) => {
+const Avatar = ({name, className = 'mr3 v-mid', size = 60}) => {
   return (
     <img src={`https://github.com/${name}.png?size=${size}`} className={className} style={{width: size/2, height: size/2}} alt={`${name} avatar`} />
   )
@@ -25,17 +25,17 @@ const Avatar = ({name, className = 'ml2 mr4 v-mid', size = 60}) => {
 
 const ReplTime = ({time}) => {
   return (
-    <span className='dib f5 fr bg-snow black pa2 br3 lh-solid tr courier'>{time}</span>
+    <span className='dib f5 fr bg-snow black pa2 br3 lh-solid tr courier ml4'>{time}</span>
   )
 }
 
 const Entry = ({name, time}) => {
   return (
-    <React.Fragment>
+    <div className='flex'>
       <Avatar name={name} />
-      <span className='fw5 montserrat white truncate'>{name}</span>
+      <span className='fw5 montserrat white truncate flex-auto' title={name}>{name}</span>
       <ReplTime time={numeral(time).format('0.000e+0')} />
-    </React.Fragment>
+    </div>
   )
 }
 
@@ -105,14 +105,17 @@ class App extends Component {
       <div className="sans-serif white">
         <Header />
         <main>
-          <div className='mw7 center tr pb2'>
-            <span className='f5 pr2 mr2'>Time / byte (ms)</span>
+          <div className='mw7 pl3 center pb2 cf'>
+            <h2 className='f4 f3-m f3-l mv3 pl4-m pl4-l tc tl-m tl-l montserrat fw2 ttu fl-m fl-l'>Leaderboard</h2>
+            <div className='f4 f3-m f3-l mv3 pr4 fr'>
+              <div className='f6 f5-m f5-l mt1 montserrat fw2'>Time / byte (ms)</div>
+            </div>
           </div>
-          <ol className='ma0 lh-copy mw7 mb5 center db gray' style={{listStyleType: 'decimal'}}>
+          <ol className='ma0 lh-copy mw7 mb5 pl3 center db gray' style={{listStyleType: 'decimal'}}>
           {data.slice(0,1).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl f4 pa3 b--gold b--solid bw1 br3 relative shadow-1'
+              className='tl f4 mh3 pa3 b--gold b--solid bw1 br3 relative shadow-1'
               style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}
               title={formatParams(params)}>
               <Medal type='gold' />
@@ -122,7 +125,7 @@ class App extends Component {
           {data.slice(1,2).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl f4 mt4 pa3 b--silver b--solid bw1 br3 relative shadow-1'
+              className='tl f4 mt4 mh3 pa3 b--silver b--solid bw1 br3 relative shadow-1'
               style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}
               title={formatParams(params)}>
               <Medal type='silver' />
@@ -132,7 +135,7 @@ class App extends Component {
           {data.slice(2,3).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl f4 mt4 mb4 pa3 b--solid bw1 br3 relative shadow-1'
+              className='tl f4 mt4 mh3 mb4 pa3 b--solid bw1 br3 relative shadow-1'
               style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}
               title={formatParams(params)}>
               <Medal type='bronze' />
@@ -142,7 +145,7 @@ class App extends Component {
           {data.slice(3).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl mt3 ph3 f4'
+              className='tl mt3 mh3 ph3 f4'
               title={formatParams(params)}>
               <Entry name={prover} time={perByteTime} />
             </li>

@@ -25,7 +25,7 @@ const Avatar = ({name, className = 'mr3 v-mid', size = 60}) => {
 
 const ReplTime = ({time}) => {
   return (
-    <span className='dib f5 fr bg-snow black pa2 br3 lh-solid tr courier ml4'>{time}</span>
+    <span className='dib f5 fr black pa2 br1 lh-solid tr courier ml4' style={{ backgroundColor: '#f4f6f9' }}>{time}</span>
   )
 }
 
@@ -42,7 +42,7 @@ const Entry = ({name, time}) => {
 const Medal = ({ type }) => {
   const srcs = { gold, silver, bronze }
   return (
-    <img src={srcs[type]} alt={type} className='absolute dn db-m db-l' style={{ width: 45, top: -3, right: '8rem' }} />
+    <img src={srcs[type]} alt={type} className='absolute dn db-m db-l' style={{ width: 54, top: -1, right: '8rem' }} />
   )
 }
 
@@ -115,8 +115,8 @@ class App extends Component {
           {data.slice(0,1).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl f4 mh3 pa3 b--gold b--solid bw1 br3 relative shadow-1'
-              style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}
+              className='tl f4 mh3 ph3 pv4 b--solid bw0 br1 relative shadow-1'
+              style={{ backgroundColor: '#410868', borderColor: '#48FFB6', zIndex: 3 }}
               title={formatParams(params)}>
               <Medal type='gold' />
               <Entry name={prover} time={perByteTime} />
@@ -125,8 +125,8 @@ class App extends Component {
           {data.slice(1,2).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl f4 mt4 mh3 pa3 b--silver b--solid bw1 br3 relative shadow-1'
-              style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}
+              className='tl f4 mt0 mh3 ph3 pv4 b--solid bw0 br1 relative shadow-1'
+              style={{ backgroundColor: '#28004F', borderColor: '#FFBF65', zIndex: 2 }}
               title={formatParams(params)}>
               <Medal type='silver' />
               <Entry name={prover} time={perByteTime} />
@@ -135,8 +135,8 @@ class App extends Component {
           {data.slice(2,3).map(({ id, prover, perByteTime, params }) => (
             <li
               key={id}
-              className='tl f4 mt4 mh3 mb4 pa3 b--solid bw1 br3 relative shadow-1'
-              style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}
+              className='tl f4 mt0 mh3 ph3 pv4 b--solid bw0 br1 relative shadow-1'
+              style={{ backgroundColor: '#0E0035', borderColor: '#FF8571', zIndex: 1 }}
               title={formatParams(params)}>
               <Medal type='bronze' />
               <Entry name={prover} time={perByteTime} />

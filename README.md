@@ -1,6 +1,36 @@
-# Replication Challenge
+# Replication Game Leaderboard
+
+> Frontend to the [replication game](https://github.com/filecoin-project/replication-game)
+
+View the leaderboard at https://replication-game.herokuapp.com/
 
 ![screenshot](./screenshot.png)
+
+## Usage
+
+First, clone the project and install dependencies. You'll need [Git](https://git-scm.com/) and [Node.js](https://nodejs.org/en/) installed.
+
+```console
+$ git clone git@github.com:filecoin-project/replication-game-leaderboard.git
+$ npm install
+```
+
+### Development
+
+Start a development server:
+
+```console
+$ npm start
+$ # ... server now running at http://localhost:3000
+```
+
+### Production
+
+Build for production:
+
+```console
+$ REACT_APP_API_URL=/api/leaderboard npm run build
+```
 
 ---
 

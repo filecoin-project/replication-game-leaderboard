@@ -17,7 +17,7 @@ const Header = () => (
   </header>
 )
 
-const Avatar = ({name, className = 'ml2 mr4 v-mid', size = 60}) => {
+const Avatar = ({name, className = 'mr3 v-mid', size = 60}) => {
   return (
     <img src={`https://github.com/${name}.png?size=${size}`} className={className} style={{width: size/2, height: size/2}} alt={`${name} avatar`} />
   )
@@ -105,10 +105,10 @@ class App extends Component {
       <div className="sans-serif white">
         <Header />
         <main>
-          <div className='mw7 center pb2 cf'>
-            <h2 className='f4 f3-m f3-l mv3 pl5-m pl5-l tc tl-m tl-l montserrat fw2 ttu fl-m fl-l'>Leaderboard</h2>
-            <div className='f4 f3-m f3-l mv3 fr'>
-              <div className='f6 f5-m f5-l pr2 mt1 mr2 montserrat fw2'>Time / byte (ms)</div>
+          <div className='mw7 pl3 center pb2 cf'>
+            <h2 className='f4 f3-m f3-l mv3 pl4-m pl4-l tc tl-m tl-l montserrat fw2 ttu fl-m fl-l'>Leaderboard</h2>
+            <div className='f4 f3-m f3-l mv3 pr4 fr'>
+              <div className='f6 f5-m f5-l mt1 montserrat fw2'>Time / byte (ms)</div>
             </div>
           </div>
           <ol className='ma0 lh-copy mw7 mb5 pl3 center db gray' style={{listStyleType: 'decimal'}}>

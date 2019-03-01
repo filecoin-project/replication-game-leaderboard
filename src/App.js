@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import numeral from 'numeral'
 import logo from './filecoin-logo.svg'
 import gold from './gold.png'
 import silver from './silver.png'
@@ -7,8 +6,6 @@ import bronze from './bronze.png'
 
 const API_URL = process.env.REACT_APP_API_URL || '/leaderboard.json'
 const REFRESH_INTERVAL = process.env.REACT_APP_REFRESH_INTERVAL || 10 * 1000
-
-const secondsToMicroseconds = (s) => numeral(s * 1e+6).format(0,0)
 
 const Header = () => (
   <header className="mw7 center">
@@ -36,7 +33,7 @@ const Entry = ({name, time}) => {
     <div className='flex'>
       <Avatar name={name} />
       <span className='fw5 montserrat white truncate flex-auto' title={name}>{name}</span>
-      <ReplTime time={secondsToMicroseconds(time)} />
+      <ReplTime time={time.toFixed(3)} />
     </div>
   )
 }
@@ -92,8 +89,8 @@ class App extends Component {
     }
 
     const data = leaderboardData
-      .map(d => ({ ...d, perByteTime: (d.repl_time * 1000) / d.params.size }))
-      .sort((a, b) => a.perByteTime - b.perByteTime)
+      .map(d => ({ ...d, secondsPerMBTime: d.repl_time / (d.params.size / 1e+6) }))
+      .sort((a, b) => a.secondsPerMBTime - b.secondsPerMBTime)
       .reduce((deduped, d) => {
         const exists = deduped.some(dd => {
           return dd.prover === d.prover &&
@@ -110,46 +107,46 @@ class App extends Component {
           <div className='mw7 pl3 center pb2 cf'>
             <h2 className='f4 f3-m f3-l mv3 pl4-m pl4-l tc tl-m tl-l montserrat fw2 ttu fl-m fl-l'>Leaderboard</h2>
             <div className='f4 f3-m f3-l mv3 pr4 fr'>
-              <div className='f6 f5-m f5-l mt1 montserrat fw2' title='microseconds per byte'>Time / byte <small>(µs)</small> </div>
+              <div className='f6 f5-m f5-l mt1 montserrat fw2' title='microseconds per byte'>Repl time <small >(s/MB)</small></div>
             </div>
           </div>
           <ol className='ma0 lh-copy mw7 mb5 pl3 center db gray' style={{listStyleType: 'decimal'}}>
-          {data.slice(0,1).map(({ id, prover, perByteTime, params }) => (
+          {data.slice(0,1).map(({ id, prover, secondsPerMBTime, params }) => (
             <li
               key={id}
               className='tl f4 mh3 pa3 b--gold b--solid bw1 br3 relative shadow-1'
               style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}
               title={formatParams(params)}>
               <Medal type='gold' />
-              <Entry name={prover} time={perByteTime} />
+              <Entry name={prover} time={secondsPerMBTime} />
             </li>
           ))}
-          {data.slice(1,2).map(({ id, prover, perByteTime, params }) => (
+          {data.slice(1,2).map(({ id, prover, secondsPerMBTime, params }) => (
             <li
               key={id}
               className='tl f4 mt4 mh3 pa3 b--silver b--solid bw1 br3 relative shadow-1'
               style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}
               title={formatParams(params)}>
               <Medal type='silver' />
-              <Entry name={prover} time={perByteTime} />
+              <Entry name={prover} time={secondsPerMBTime} />
             </li>
           ))}
-          {data.slice(2,3).map(({ id, prover, perByteTime, params }) => (
+          {data.slice(2,3).map(({ id, prover, secondsPerMBTime, params }) => (
             <li
               key={id}
               className='tl f4 mt4 mh3 mb4 pa3 b--solid bw1 br3 relative shadow-1'
               style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}
               title={formatParams(params)}>
               <Medal type='bronze' />
-              <Entry name={prover} time={perByteTime} />
+              <Entry name={prover} time={secondsPerMBTime} />
             </li>
           ))}
-          {data.slice(3).map(({ id, prover, perByteTime, params }) => (
+          {data.slice(3).map(({ id, prover, secondsPerMBTime, params }) => (
             <li
               key={id}
               className='tl mt3 mh3 ph3 f4'
               title={formatParams(params)}>
-              <Entry name={prover} time={perByteTime} />
+              <Entry name={prover} time={secondsPerMBTime} />
             </li>
           ))}
           </ol>

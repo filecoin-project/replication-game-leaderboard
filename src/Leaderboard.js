@@ -93,7 +93,9 @@ const CollapsedLeaderboard = ({ entries, onExpand }) => {
           <li
             key={id}
             className='tl f4 mh3 pa3 b--gold b--solid bw1 br3 br--top shadow-1'
-            style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}><Entry name={prover} time={secondsPerMBTime} medal='gold' /></li>
+            style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}>
+            <Entry name={prover} time={secondsPerMBTime} medal='gold' />
+          </li>
         ))}
         {top3.slice(1, 2).map(({ id, prover, secondsPerMBTime, params }) => (
           <li

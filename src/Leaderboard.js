@@ -27,24 +27,22 @@ const ReplTime = ({ time }) => (
 )
 
 const Entry = ({ name, time, medal }) => (
-  <div className='flex' title={`${name} took ${time.toFixed(3)}s to replicate 1MiB of data`}>
-    <Avatar name={name} />
-    <span className='fw5 montserrat white truncate flex-auto'>{name}</span>
-    {medal ? <Medal type={medal} /> : null}
-    <ReplTime time={time} />
+  <div className='dib w-100 v-mid'>
+    <div className='flex items-center' title={`${name} took ${time.toFixed(3)}s to replicate 1MiB of data`}>
+      <Avatar name={name} />
+      <span className='f4 fw5 montserrat white truncate flex-auto'>{name}</span>
+      {medal ? <Medal type={medal} /> : null}
+      <ReplTime time={time} />
+    </div>
   </div>
 )
 
 const Medal = ({ type }) => {
   const srcs = { gold, goldRibbon, silver, silverRibbon, bronze, bronzeRibbon }
   const style = ['gold', 'silver', 'bronze'].includes(type)
-    ? { width: 45, height: 45, top: -6, right: 0 }
-    : { width: 45, height: 84, top: -19, right: 0 }
-  return (
-    <div className='relative w3-ns'>
-      <img src={srcs[type]} alt={type} className='absolute dn db-m db-l' style={style} />
-    </div>
-  )
+    ? { width: 45, height: 45, marginTop: -5, marginBottom: -5 }
+    : { width: 45, height: 84, marginTop: -19, marginBottom: -22 }
+  return <img src={srcs[type]} alt={type} className='dn db-m db-l' style={style} />
 }
 
 const ProofIcon = ({ typ, className }) => {

@@ -17,6 +17,8 @@ const Header = () => (
 )
 
 function processLeaderboardData (data) {
+  data = data.map(d => ({ ...d, secondsPerMBTime: d.repl_time / (d.params.size / (1024 * 1024)) }))
+
   // Group leaderboard by params ID - { id: [entries] }
   const groups = data.reduce((groups, d) => {
     groups[d.params.id] = (groups[d.params.id] || []).concat(d)
@@ -27,7 +29,7 @@ function processLeaderboardData (data) {
   return Object.values(groups)
     .filter(l => l.length > 1) // Not really a leaderboard if only 1 person...
     .sort((a, b) => b.length - a.length)
-    .map(board => board.sort((a, b) => a.repl_time - b.repl_time))
+    .map(board => board.sort((a, b) => a.secondsPerMBTime - b.secondsPerMBTime))
 }
 
 class App extends Component {

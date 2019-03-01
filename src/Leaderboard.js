@@ -27,11 +27,13 @@ const ReplTime = ({ time }) => (
 )
 
 const Entry = ({ name, time, medal }) => (
-  <div className='flex items-center' title={`${name} took ${time.toFixed(3)}s to replicate 1MiB of data`}>
-    <Avatar name={name} />
-    <span className='f4 fw5 montserrat white truncate flex-auto'>{name}</span>
-    {medal ? <Medal type={medal} /> : null}
-    <ReplTime time={time} />
+  <div className='dib w-100 v-mid'>
+    <div className='flex items-center' title={`${name} took ${time.toFixed(3)}s to replicate 1MiB of data`}>
+      <Avatar name={name} />
+      <span className='f4 fw5 montserrat white truncate flex-auto'>{name}</span>
+      {medal ? <Medal type={medal} /> : null}
+      <ReplTime time={time} />
+    </div>
   </div>
 )
 
@@ -91,15 +93,13 @@ const CollapsedLeaderboard = ({ entries, onExpand }) => {
           <li
             key={id}
             className='tl f4 mh3 pa3 b--gold b--solid bw1 br3 br--top shadow-1'
-            style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)', fontSize: 0 }}>
-            <Entry name={prover} time={secondsPerMBTime} medal='gold' />
-          </li>
+            style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}><Entry name={prover} time={secondsPerMBTime} medal='gold' /></li>
         ))}
         {top3.slice(1, 2).map(({ id, prover, secondsPerMBTime, params }) => (
           <li
             key={id}
             className={`tl f4 mh3 pa3 b--silver b--solid bw1 relative shadow-1 ${top3.length === 2 ? 'br3 br--bottom' : ''}`}
-            style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)', fontSize: 0 }}>
+            style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}>
             <Entry name={prover} time={secondsPerMBTime} medal='silver' />
           </li>
         ))}
@@ -107,7 +107,7 @@ const CollapsedLeaderboard = ({ entries, onExpand }) => {
           <li
             key={id}
             className='tl f4 mh3 pa3 b--solid bw1 br3 br--bottom shadow-1'
-            style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)', fontSize: 0 }}>
+            style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}>
             <Entry name={prover} time={secondsPerMBTime} medal='bronze' />
           </li>
         ))}
@@ -132,7 +132,7 @@ const ExpandedLeaderboard = ({ entries, onCollapse }) => (
         <li
           key={id}
           className='tl f4 mh3 pa3 b--gold b--solid bw1 br3 shadow-1'
-          style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)', fontSize: 0 }}>
+          style={{ backgroundColor: 'rgba(255, 183, 0, 0.75)' }}>
           <Entry name={prover} time={secondsPerMBTime} medal='goldRibbon' />
         </li>
       ))}
@@ -140,7 +140,7 @@ const ExpandedLeaderboard = ({ entries, onCollapse }) => (
         <li
           key={id}
           className='tl f4 mt4 mh3 pa3 b--silver b--solid bw1 br3 shadow-1'
-          style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)', fontSize: 0 }}>
+          style={{ backgroundColor: 'rgba(153, 153, 153, 0.75)' }}>
           <Entry name={prover} time={secondsPerMBTime} medal='silverRibbon' />
         </li>
       ))}
@@ -148,12 +148,12 @@ const ExpandedLeaderboard = ({ entries, onCollapse }) => (
         <li
           key={id}
           className='tl f4 mt4 mh3 mb4 pa3 b--solid bw1 br3 shadow-1'
-          style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)', fontSize: 0 }}>
+          style={{ borderColor: '#cd7f32', backgroundColor: 'rgba(205, 127, 50, 0.75)' }}>
           <Entry name={prover} time={secondsPerMBTime} medal='bronzeRibbon' />
         </li>
       ))}
       {entries.slice(3).map(({ id, prover, secondsPerMBTime, params }) => (
-        <li key={id} className='tl mt3 mh3 ph3 f4' style={{ fontSize: 0 }}>
+        <li key={id} className='tl mt3 mh3 ph3 f4'>
           <Entry name={prover} time={secondsPerMBTime} />
         </li>
       ))}

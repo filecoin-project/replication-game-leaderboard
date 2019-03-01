@@ -2,6 +2,8 @@
 
 > Frontend to the [replication game](https://github.com/filecoin-project/replication-game)
 
+[![build status](https://img.shields.io/circleci/project/github/filecoin-project/replication-game-leaderboard/master.svg?style=flat-square)](https://circleci.com/gh/filecoin-project/replication-game-leaderboard)
+
 View the leaderboard at https://replication-game.herokuapp.com/
 
 ![screenshot](./screenshot.png)

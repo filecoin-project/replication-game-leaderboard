@@ -5,7 +5,7 @@ import gold from './gold.png'
 import silver from './silver.png'
 import bronze from './bronze.png'
 
-const API_URL = process.env.REACT_APP_API_URL || '/leaderboard.json'
+const API_URL = process.env.REACT_APP_API_URL || 'leaderboard.json'
 const REFRESH_INTERVAL = process.env.REACT_APP_REFRESH_INTERVAL || 10 * 1000
 
 const Header = () => (

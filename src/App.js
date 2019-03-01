@@ -8,6 +8,8 @@ import bronze from './bronze.png'
 const API_URL = process.env.REACT_APP_API_URL || '/leaderboard.json'
 const REFRESH_INTERVAL = process.env.REACT_APP_REFRESH_INTERVAL || 10 * 1000
 
+const secondsToMicroseconds = (s) => numeral(s * 1e+6).format(0,0)
+
 const Header = () => (
   <header className="mw7 center">
     <h1 className='ma0 pv4 fw2 f1 montserrat tc'>
@@ -34,7 +36,7 @@ const Entry = ({name, time}) => {
     <div className='flex'>
       <Avatar name={name} />
       <span className='fw5 montserrat white truncate flex-auto' title={name}>{name}</span>
-      <ReplTime time={numeral(time).format('0.000e+0')} />
+      <ReplTime time={secondsToMicroseconds(time)} />
     </div>
   )
 }
@@ -108,7 +110,7 @@ class App extends Component {
           <div className='mw7 pl3 center pb2 cf'>
             <h2 className='f4 f3-m f3-l mv3 pl4-m pl4-l tc tl-m tl-l montserrat fw2 ttu fl-m fl-l'>Leaderboard</h2>
             <div className='f4 f3-m f3-l mv3 pr4 fr'>
-              <div className='f6 f5-m f5-l mt1 montserrat fw2'>Time / byte (ms)</div>
+              <div className='f6 f5-m f5-l mt1 montserrat fw2' title='microseconds per byte'>Time / byte <small>(µs)</small> </div>
             </div>
           </div>
           <ol className='ma0 lh-copy mw7 mb5 pl3 center db gray' style={{listStyleType: 'decimal'}}>

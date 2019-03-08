@@ -77,8 +77,6 @@ class LeaderboardList extends Component {
     const onExpand = () => this.setState({ expanded: true })
     const onCollapse = () => this.setState({ expanded: false })
 
-    console.log(all)
-
     return (
       <Fragment>
         <div className='mw7 center pb2 cf'>

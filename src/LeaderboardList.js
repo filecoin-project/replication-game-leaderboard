@@ -61,7 +61,13 @@ class LeaderboardList extends Component {
   render () {
     const { boardData, expanded } = this.state
 
-    if (!boardData) return <p>Loading...</p>
+    if (!boardData) {
+      return (
+        <div className='mw7 center pb2'>
+          <p>Loading...</p>
+        </div>
+      )
+    }
 
     const all = processBoardData(boardData)
     const top = all.slice(0, TOP_BOARD_PARAM_IDS.length)
@@ -72,10 +78,10 @@ class LeaderboardList extends Component {
 
     return (
       <Fragment>
-        <div className='mw7 pl3 center pb2 cf'>
+        <div className='mw7 center pb2 cf'>
           <h2 className='f4 f3-m f3-l mv3 pl4-m pl4-l tc tl-m tl-l montserrat fw2 ttu fl-m fl-l'>Leaderboards</h2>
         </div>
-        <div className='mw7 pl3 center pb2 cf'>
+        <div className='mw7 center pb2'>
           {top.map(l => <Leaderboard entries={l} />)}
         </div>
         {rest.length ? (
@@ -93,7 +99,7 @@ class LeaderboardList extends Component {
           </div>
         ) : null}
         {rest.length && expanded ? (
-          <div className='mw7 pl3 center pb2 cf'>
+          <div className='mw7 center pb2 cf'>
             {rest.map(l => <Leaderboard entries={l} />)}
           </div>
         ) : null}

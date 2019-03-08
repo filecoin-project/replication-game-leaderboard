@@ -34,7 +34,7 @@ const App = () => {
   return (
     <div className='sans-serif white'>
       <Header showInstructions={showInstructions} onShowInstructions={onShowInstructions} onShowLeaderboard={onShowLeaderboard} />
-      <main class='pt4 ph3'>
+      <main className='pt4 ph3'>
         {showInstructions ? <Instructions onShowLeaderboard={onShowLeaderboard} /> : <LeaderboardList />}
       </main>
     </div>

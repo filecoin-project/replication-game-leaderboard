@@ -92,9 +92,11 @@ class LeaderboardList extends Component {
             <div className='flex-auto'><hr className={`black-${expanded ? '20' : '10'} b--solid`} /></div>
           </div>
         ) : null}
-        <div className='mw7 pl3 center pb2 cf'>
-          {expanded ? rest.map(l => <Leaderboard entries={l} />) : null}
-        </div>
+        {rest.length && expanded ? (
+          <div className='mw7 pl3 center pb2 cf'>
+            {rest.map(l => <Leaderboard entries={l} />)}
+          </div>
+        ) : null}
       </Fragment>
     )
   }

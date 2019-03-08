@@ -103,6 +103,8 @@ export REPL_GAME_TIMESTAMP=$(cat seed.json| jq -r '.timestamp')`}</pre>
 
         <p><button onClick={onShowLeaderboard} className='montserrat f6 fw2 gray bw0 br4 ph3 pv2 bg-white-10 hover-bg-white-30 pointer'>Check your place on the leaderboards!</button></p>
 
+        <hr className='black-20 b--solid mv4' />
+
         <h2 className='f4 fw2 mt4 mb3 white ttu'>FAQ</h2>
 
         <blockquote className='ml0 mt4 white'>What parameters should I be using for the replication?</blockquote>

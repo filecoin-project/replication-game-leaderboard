@@ -64,16 +64,16 @@ const ProofDesc = {
 
 const Header = ({ params }) => (
   <div className='pl4 pr3'>
-    <h2 className='flex items-center montserrat fw2 mv3'>
-      <span className='flex-none' title={ProofDesc[params.typ] || ''}>
+    <h2 className='flex-m flex-l items-center montserrat fw2 mv3'>
+      <div className='flex-none mb3 mb0-m mb0-l' title={ProofDesc[params.typ] || ''}>
         <ProofIcon className='mr2 v-mid' typ={params.typ} />
         <span className='v-mid mr3'>{params.typ}</span>
-      </span>
-      <span className='flex-auto tr'>
+      </div>
+      <div className='flex-auto tr-m tr-l'>
         <span className='dib pv2 ph3 bg-white-10 br2'>
           {size(params.size)[0]} <small className='gray'>{size(params.size)[1]}</small>
         </span>
-      </span>
+      </div>
     </h2>
     <ul className='montserrat f6 fw2 list mv3 pl0'>
       <li className='dib-ns mr3'><span className='gray mr2'>Challenges</span> {params.challenge_count}</li>

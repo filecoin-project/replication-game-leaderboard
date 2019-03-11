@@ -70,7 +70,6 @@ const Header = ({ params }) => (
       <span className='dib v-mid' style={{ lineHeight: '50px' }}>{numeral(params.size).format('0,0')} <small className='gray'>bytes</small></span>
     </h2>
     <ul className='montserrat f6 fw2 list mv3 pl0'>
-      <li className='dib-ns mr3'><span className='gray mr2'>Challenges</span> {params.challenge_count}</li>
       <li className='dib-ns mr3'><span className='gray mr2'>VDE</span> {params.vde}</li>
       <li className='dib-ns mr3'><span className='gray mr2'>Degree</span> {params.degree}</li>
       <li className='dib-ns mr3'><span className='gray mr2'>Expansion degree</span> {params.expansion_degree}</li>

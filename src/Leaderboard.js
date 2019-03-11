@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import numeral from 'numeral'
 import md5 from 'md5'
+import filesize from 'filesize'
 import gold from './gold.png'
 import silver from './silver.png'
 import bronze from './bronze.png'
@@ -10,6 +10,8 @@ import bronzeRibbon from './bronze-ribbon.png'
 import proofDrgPoRep from './proof-DrgPoRep.svg'
 import proofZigzag from './proof-Zigzag.svg'
 import proofUnknown from './proof-Unknown.svg'
+
+const size = filesize.partial({ standard: 'iec', output: 'array' })
 
 const Avatar = ({ name, className = 'mr3 v-mid', size = 60 }) => (
   <img
@@ -52,7 +54,7 @@ const ProofIcon = ({ typ, className }) => {
   } else if (typ === 'Zigzag') {
     src = proofZigzag
   }
-  return <img src={src} alt='icon by Eliricon from the Noun Project' width='50' height='50' className={className} />
+  return <img src={src} alt='icon by Eliricon from the Noun Project' width='45' height='45' className={className} />
 }
 
 const ProofDesc = {
@@ -61,13 +63,17 @@ const ProofDesc = {
 }
 
 const Header = ({ params }) => (
-  <div className='pl4'>
-    <h2 className='montserrat fw2 mv3' title={ProofDesc[params.typ] || ''}>
-      <span className='dib w5'>
+  <div className='pl4 pr3'>
+    <h2 className='flex items-center montserrat fw2 mv3'>
+      <span className='flex-none' title={ProofDesc[params.typ] || ''}>
         <ProofIcon className='mr2 v-mid' typ={params.typ} />
-        <span className='v-mid mr5'>{params.typ}</span>
+        <span className='v-mid mr3'>{params.typ}</span>
       </span>
-      <span className='dib v-mid' style={{ lineHeight: '50px' }}>{numeral(params.size).format('0,0')} <small className='gray'>bytes</small></span>
+      <span className='flex-auto tr'>
+        <span className='dib pv2 ph3 bg-white-10 br2'>
+          {size(params.size)[0]} <small className='gray'>{size(params.size)[1]}</small>
+        </span>
+      </span>
     </h2>
     <ul className='montserrat f6 fw2 list mv3 pl0'>
       <li className='dib-ns mr3'><span className='gray mr2'>Challenges</span> {params.challenge_count}</li>

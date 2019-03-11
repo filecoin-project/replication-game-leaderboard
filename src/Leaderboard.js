@@ -76,7 +76,6 @@ const Header = ({ params }) => (
       </div>
     </h2>
     <ul className='montserrat f6 fw2 list mv3 pl0'>
-      <li className='dib-ns mr3'><span className='gray mr2'>Challenges</span> {params.challenge_count}</li>
       <li className='dib-ns mr3'><span className='gray mr2'>VDE</span> {params.vde}</li>
       <li className='dib-ns mr3'><span className='gray mr2'>Degree</span> {params.degree}</li>
       <li className='dib-ns mr3'><span className='gray mr2'>Expansion degree</span> {params.expansion_degree}</li>

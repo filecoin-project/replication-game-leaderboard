@@ -70,9 +70,24 @@ const Instructions = ({ onShowLeaderboard }) => {
           <li><code>TYPE</code>: the type of algorithm you want to run (current options are `zigzag` and `drgporep`)</li>
         </ul>
 
-        <pre className='pa3 bg-black-30 br2 overflow-x-scroll'>bin/play NAME SIZE TYPE</pre>
+        <pre className='pa3 bg-black-30 br2 overflow-x-scroll'>{`# Run like this:
+# bin/play NAME SIZE TYPE
 
-        <p>The <code>play</code> script will retrieve the seed from the game server, replicate the data, generate a proof, and then post that proof to the game server. The script runs each of the commands in **Method 2**, but wraps them in an easy-to-use shell script.</p>
+# E.g.
+
+# Zigzag 10MiB
+bin/play NAME 10240 zigzag
+
+# Zigzag 1GiB
+bin/play NAME 1048576 zigzag
+
+# DrgPoRep 10MiB
+bin/play NAME 10240 drgporep
+
+# DrgPoRep 1GiB
+bin/play NAME 1048576 drgporep`}</pre>
+
+        <p>The <code>play</code> script will retrieve the seed from the game server, replicate the data, generate a proof, and then post that proof to the game server. The script runs each of the commands in <strong>Method 2</strong>, but wraps them in an easy-to-use shell script.</p>
 
         <h3 className='f5 fw2 mt4 mb3 white'>Method 2: Run each individual command</h3>
 
